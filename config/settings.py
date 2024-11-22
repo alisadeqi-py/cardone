@@ -106,10 +106,9 @@ MONGODB_DATABASES = {
         'ENGINE': 'djongo',
         'NAME': os.getenv('cardone-db'),
         'CLIENT': {
-            'host': os.getenv(
-                'DATABASE_URL',
+            'host': 
+                'mongodb://root:hLUiHkaFkvDNRck5CFPXsu6k@matterhorn.liara.cloud:32262/my-app?authSource=admin',
 
-            ),
         }
     }
 }
@@ -118,9 +117,8 @@ MONGODB_DATABASES = {
 
 
 (mongoengine.
- connect(host=os.getenv(
-                'DATABASE_URL',
-            )))
+ connect(host= 'mongodb://root:hLUiHkaFkvDNRck5CFPXsu6k@matterhorn.liara.cloud:32262/my-app?authSource=admin',
+            ))
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
