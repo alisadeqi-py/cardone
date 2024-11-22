@@ -12,7 +12,7 @@ import mongoengine
 from pathlib import Path
 from datetime import timedelta
 from decouple import config
-
+import os
 
 # AWS_ACCESS_KEY_ID = config('LIARA_ACCESS_KEY')
 AWS_SECRET_ACCESS_KEY = config('LIARA_SECRET_KEY')
@@ -104,17 +104,23 @@ DATABASE_NAME = 'cardone-db'
 MONGODB_DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'cardone-db',
+        'NAME': os.getenv('cardone-db'),
         'CLIENT': {
-            'host': 'mongodb://root:hLUiHkaFkvDNRck5CFPXsu6k@matterhorn.liara.cloud:34006/my-app?authSource=admin',
+            'host': os.getenv(
+                'DATABASE_URL',
+
+            ),
         }
     }
 }
 
 
 
+
 (mongoengine.
- connect(host='mongodb://root:hLUiHkaFkvDNRck5CFPXsu6k@matterhorn.liara.cloud:34006/my-app?authSource=admin'))
+ connect(host=os.getenv(
+                'DATABASE_URL',
+            )))
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
